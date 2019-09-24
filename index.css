@@ -1,0 +1,9 @@
+.picrs {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+img {
+    padding: 10px;
+}
