@@ -1,7 +1,7 @@
 'use strict';
 
 function getDogPic() {
-    fetch('https://dog.ceo/api/breeds/image/random')
+    fetch(`https://dog.ceo/api/breed/${namer}/images/random`)
         .then(response => response.json())
         .then(responseJson =>
             consoleResponse(responseJson))
@@ -10,14 +10,25 @@ function getDogPic() {
     
 }
 
+
+
 function consoleResponse(responseJson) {
-    console.log(responseJson);
+    let data = [];
     data.push(responseJson);
-    $( ".picrs" ).append( `<img src="${responseJson.message}" alt="random dog pic">` );
+    console.log(responseJson);
+    
+    console.log(data);
+    if (data[0].code === 404) {
+        alert('The Dog Breed you Submitted returns No Images')
+    }
+
+    else {
+            $( ".picrs" ).append( `<img src="${responseJson.message}" alt="chosen dog breed picture">` );
+    };
 }
 
 
-let data = [];
+let namer = [];
 
 
 
@@ -26,32 +37,14 @@ let data = [];
 function submitForm() {
     $('form').submit(event => {
         event.preventDefault();
-        
-        setSelect();
+        namer.push(document.getElementById('myForm').value);
+        getDogPic();
         
     });
 }
 
 
-function setSelect() {
-    let namer = document.getElementById('myForm').value;
-    console.log(namer);
-    window.sllt = namer;
-    for (let selection = 0; selection < namer; selection++) {
-        getDogPic();
 
-
-        
-    }
-    
-    console.log(data);
-    
-    
-
-    
- 
-   
-}
 
 
 
