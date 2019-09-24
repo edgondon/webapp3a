@@ -19,7 +19,7 @@ function consoleResponse(responseJson) {
     
     console.log(data);
     if (data[0].code === 404) {
-        alert('The Dog Breed you Submitted returns No Images')
+        $( ".errod" ).append( "The Dog Breed you Submitted returns No Images - Please Try Again" );
     }
 
     else {
@@ -37,6 +37,9 @@ let namer = [];
 function submitForm() {
     $('form').submit(event => {
         event.preventDefault();
+        $( ".errod" ).html("");
+        $( ".picrs" ).html("");
+        namer.shift();
         namer.push(document.getElementById('myForm').value);
         getDogPic();
         
